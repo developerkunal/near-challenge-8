@@ -8,7 +8,9 @@ import {
   Row,
   Alert,
   InputGroup,
-  Nav
+  Nav,
+  ListGroup,
+
 } from "react-bootstrap";
 import { keys } from "regenerator-runtime";
 import Big from "big.js";
@@ -62,7 +64,7 @@ const Creating = (props) => {
       [evt.target.name]: value,
     });
   }
-  console.log(  ` pay per hour ${Big(385802469135802469).times(state.amount).times(3600).div(10 ** 24).toFixed()}`)
+console.log(state.radio)
   return (
     <Card style={{ padding: "2vh" }}>
       <Container>
@@ -98,6 +100,8 @@ const Creating = (props) => {
                 onChange={handleChange}
               />
             </InputGroup>
+           
+            <br/>
             <Form.Label>Reciever's Amount in a Month</Form.Label>
 
             <InputGroup className="mb-3">
@@ -118,6 +122,39 @@ const Creating = (props) => {
             </InputGroup>
           </Form.Group>{" "}
           {state.formError && <p style={{ color: "red" }}>{state.formError}</p>}{" "}
+        </Row>
+        <Row>
+          <ListGroup as="ul">
+            <ListGroup.Item as="li" active>
+              Calculations : -{" "}
+            </ListGroup.Item>
+            <ListGroup.Item as="li">
+              Pay Per Second : -{" "}
+              {state.amount &&
+                Big(385802469135802469)
+                  .times(state.amount)
+                  .div(10 ** 24)
+                  .toFixed()}
+            </ListGroup.Item>
+            <ListGroup.Item as="li">
+              Pay Per Minute : -{" "}
+              {state.amount &&
+                Big(385802469135802469)
+                  .times(state.amount)
+                  .div(10 ** 24)
+                  .times(60)
+                  .toFixed()}
+            </ListGroup.Item>
+            <ListGroup.Item as="li">
+              Pay Per Hour : -{" "}
+              {state.amount &&
+                Big(385802469135802469)
+                  .times(state.amount)
+                  .div(10 ** 24)
+                  .times(3600)
+                  .toFixed()}
+            </ListGroup.Item>
+          </ListGroup>
         </Row>
         <Row className="d-flex justify-content-center">
           <Button

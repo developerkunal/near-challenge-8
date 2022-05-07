@@ -31,7 +31,7 @@ const Incomming = (props) => {
             .get_account_incoming_streams({
               account_id: `${window.accountId}`,
               from: 0,
-              limit: 10,
+              limit: 100,
             })
             .then((res) => {
               return res;
