@@ -77,10 +77,10 @@ const Incomming = (props) => {
                           .toFixed()}{" "}
                         Wnear
                       </ListGroup.Item>
-                      <ListGroup.Item>Status : {val.status}</ListGroup.Item>
+                      <ListGroup.Item>Status : {(typeof val.status!='object') ? val.status.toString():<>Finished</>}</ListGroup.Item>
                       <ListGroup.Item>
                         {" "}
-                       {val.status!='Paused' ? <DropdownButton
+                       {val.status.toString()==='Active' ? <DropdownButton
                           as={ButtonGroup}
                           title="Options"
                           id="bg-vertical-dropdown-1"
@@ -93,7 +93,7 @@ const Incomming = (props) => {
                               Withdraw
                             </Dropdown.Item>
                           }
-                        </DropdownButton>:<Button disabled>Withdrawls Paused</Button>}
+                        </DropdownButton>: (typeof val.status!='object') ? <Button disabled>Withdrawls Paused</Button>:<Button disabled>Already Finished</Button>}
                       </ListGroup.Item>
                     </ListGroup>
                   </Card.Body>

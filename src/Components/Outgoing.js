@@ -7,6 +7,7 @@ import {
   ListGroup,
   DropdownButton,
   ButtonGroup,
+  Button
 } from "react-bootstrap";
 import Big from "big.js";
 const BN = require("bn.js");
@@ -87,15 +88,15 @@ const Outgoing = (props) => {
                           .toFixed()}{" "}
                         Wnear
                       </ListGroup.Item>
-                      <ListGroup.Item>Status : {val.status}</ListGroup.Item>
+                      <ListGroup.Item>Status : {(typeof val.status!='object') ? val.status:<>Finished</>}</ListGroup.Item>
                       <ListGroup.Item>
                         {" "}
-                        <DropdownButton
+                        {(typeof val.status!='object') ? <DropdownButton
                           as={ButtonGroup}
                           title="Options"
                           id="bg-vertical-dropdown-1"
                         >
-                          {val.status != "Active" && (
+                          {val.status != "Active" && (typeof val.status!='object') && (
                             <Dropdown.Item
                               eventKey="1"
                               onClick={startstream.bind(null, val.id)}
@@ -103,7 +104,7 @@ const Outgoing = (props) => {
                               Start Stream
                             </Dropdown.Item>
                           )}
-                          {val.status != "Paused" && (
+                          {val.status != "Paused" && (typeof val.status!='object') && (
                             <Dropdown.Item
                               eventKey="1"
                               onClick={pausestream.bind(null, val.id)}
@@ -111,7 +112,7 @@ const Outgoing = (props) => {
                               Pause Stream
                             </Dropdown.Item>
                           )}
-                          {val.status != "Stop" && (
+                          {val.status != "Stop" && (typeof val.status!='object') && (
                             <Dropdown.Item
                               eventKey="2"
                               onClick={stopstream.bind(null, val.id)}
@@ -119,7 +120,8 @@ const Outgoing = (props) => {
                               Stop Stream
                             </Dropdown.Item>
                           )}
-                        </DropdownButton>
+                           
+                        </DropdownButton>:<Button disabled>Already Finished</Button>}
                       </ListGroup.Item>
                     </ListGroup>
                   </Card.Body>

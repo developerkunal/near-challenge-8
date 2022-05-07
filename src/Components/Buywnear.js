@@ -86,6 +86,10 @@ const Buywnear = (props) => {
                     name="amount"
                     value={state.amount}
                     min={1}
+                    max={ window.accountId &&
+                      Big(window.userbalance.total)
+                        .div(10 ** 24)
+                        .toFixed()}
                     step={0.1}
                     onChange={handleChange}
                   />

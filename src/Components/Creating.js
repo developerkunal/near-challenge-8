@@ -62,6 +62,7 @@ const Creating = (props) => {
       [evt.target.name]: value,
     });
   }
+  console.log(  ` pay per hour ${Big(385802469135802469).times(state.amount).times(3600).div(10 ** 24).toFixed()}`)
   return (
     <Card style={{ padding: "2vh" }}>
       <Container>
